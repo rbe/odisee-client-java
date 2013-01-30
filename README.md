@@ -18,12 +18,20 @@
 
     // Create Odisee client with service URL and authentication
     OdiseeClient odisee = OdiseeClient.createClient("http://service.odisee.de", "username", "password");
+    // First request
     // Create a new request for template HalloOdisee
     Request odiseeRequest = odisee.createRequest("HalloOdisee");
     // Set value for userfield 'hallo'
     odisee.setUserfield(request, "hallo", "Odisee");
     // Set value in table "Tabelle1" cell "A4"
     odisee.setTableCellValue(request, "Tabelle1", "A4", "value in a table cell");
+    // Second request
+    // Create a new request for template HalloOdisee
+    Request odiseeRequest = odisee.createRequest("HalloOdisee");
+    // Set value for userfield 'hallo'
+    odisee.setUserfield(request, "hallo", "Odisee, again");
+    // Set value in table "Tabelle1" cell "A4"
+    odisee.setTableCellValue(request, "Tabelle1", "A4", "Another value in a table cell");
     // Generate document, PDF by default
     byte[] document = odisee.process();
 
