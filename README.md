@@ -2,6 +2,7 @@
 
 ## Working with a single request
 
+    :::java
     // Create Odisee client with service URL and authentication
     OdiseeClient odisee = OdiseeClient.createClient("http://service.odisee.de", "username", "password");
     // Create a new request for template HalloOdisee
@@ -16,6 +17,7 @@
 
 ## Working with multiple requests
 
+    :::java
     // Create Odisee client with service URL and authentication
     OdiseeClient odisee = OdiseeClient.createClient("http://service.odisee.de", "username", "password");
     // First request
@@ -37,6 +39,7 @@
 
 ## Using the fluent API
 
+    :::java
     // Create Odisee client with service URL and authentication
     OdiseeClient odisee = OdiseeClient.createClient("http://service.odisee.de", "username", "password");
     // Create a new request for template HalloOdisee
