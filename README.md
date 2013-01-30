@@ -7,10 +7,10 @@
     // Create a new request for template HalloOdisee
     // By default, the last call to createRequest is remembered by the client
     odisee.createRequest("HalloOdisee");
-    // Set value for userfield 'hallo'
-    odisee.setUserfield('hallo', 'Odisee');
-    // Set value in table 'Tabelle1' cell 'A4'
-    odisee.setTableCellValue('Tabelle1', 'A4', 'value in a table cell');
+    // Set value for userfield "hallo"
+    odisee.setUserfield("hallo", "Odisee");
+    // Set value in table "Tabelle1" cell "A4"
+    odisee.setTableCellValue("Tabelle1", "A4", "value in a table cell");
     // Generate document, PDF by default
     byte[] document = odisee.process();
 
@@ -21,9 +21,9 @@
     // Create a new request for template HalloOdisee
     Request odiseeRequest = odisee.createRequest("HalloOdisee");
     // Set value for userfield 'hallo'
-    odisee.setUserfield(request, 'hallo', 'Odisee');
-    // Set value in table 'Tabelle1' cell 'A4'
-    odisee.setTableCellValue(request, 'Tabelle1', 'A4', 'value in a table cell');
+    odisee.setUserfield(request, "hallo", "Odisee");
+    // Set value in table "Tabelle1" cell "A4"
+    odisee.setTableCellValue(request, "Tabelle1", "A4", "value in a table cell");
     // Generate document, PDF by default
     byte[] document = odisee.process();
 
