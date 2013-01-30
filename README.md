@@ -1,4 +1,4 @@
-# Odisee(R) Client/Java
+# Odisee&reg; Client/Java
 
 ## Working with a single request
 
