@@ -189,19 +189,19 @@ public class OdiseeClient {
         return setLatestTemplate(template, "pdf");
     }
 
-    public OdiseeClient createRequest() {
+    public Request createRequest() {
         actualRequest = factory.createRequest();
         odisee.getRequest().add(actualRequest);
-        return this;
+        return actualRequest;
     }
 
-    public OdiseeClient createRequest(String template, String outputFormat) {
-        createRequest();
-        setLatestTemplate(template, outputFormat);
-        return this;
+    public Request createRequest(String template, String outputFormat) {
+        Request request = createRequest();
+        setLatestTemplate(request, template, outputFormat);
+        return request;
     }
 
-    public OdiseeClient createRequest(String template) {
+    public Request createRequest(String template) {
         return createRequest(template, "pdf");
     }
 
