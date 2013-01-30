@@ -39,6 +39,9 @@
 
     // Create Odisee client with service URL and authentication
     OdiseeClient odisee = OdiseeClient.createClient("http://service.odisee.de", "username", "password");
+    // Create a new request for template HalloOdisee
+    // By default, the last call to createRequest is remembered by the client
+    odisee.createRequest("HalloOdisee");
     byte[] document = client.setUserfield("Customer", "Acme Inc.").
                              setUserfield("Salutation", "Mr.").
                              setUserfield("Firstname", "John").
