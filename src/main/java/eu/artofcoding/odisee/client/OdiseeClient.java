@@ -12,8 +12,8 @@
 
 package eu.artofcoding.odisee.client;
 
-import eu.artofcoding.beetlejuice.xml.JAXBHelper;
-import eu.artofcoding.beetlejuice.xml.XMLException;
+import eu.artofcoding.beetlejuice.xml.JaxbHelper;
+import eu.artofcoding.beetlejuice.xml.XmlException;
 import eu.artofcoding.odisee.client.jaxb.*;
 
 import java.io.IOException;
@@ -209,9 +209,9 @@ public class OdiseeClient {
         byte[] result;
         try {
             Writer odiseeXml = new StringWriter();
-            JAXBHelper.marshal(Odisee.class, odisee, odiseeXml);
+            JaxbHelper.marshal(Odisee.class, odisee, odiseeXml);
             result = httpHelper.post(new URL(serviceURL), odiseeXml.toString());
-        } catch (XMLException e) {
+        } catch (XmlException e) {
             throw new OdiseeClientException(e);
         } catch (IOException e) {
             throw new OdiseeClientException(e);

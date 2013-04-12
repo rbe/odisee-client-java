@@ -12,7 +12,7 @@
 
 package eu.artofcoding.odisee.client;
 
-import eu.artofcoding.beetlejuice.xml.XMLException;
+import eu.artofcoding.beetlejuice.xml.XmlException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,7 +23,7 @@ import java.io.*;
 public class OdiseeJaxbHelper {
 
     @SuppressWarnings({"unchecked"})
-    public static <T> T unmarshal(Class<T> clazz, File file) throws XMLException {
+    public static <T> T unmarshal(Class<T> clazz, File file) throws XmlException {
         T odisee;
         try {
             // create a JAXBContext capable of handling classes generated into package
@@ -34,14 +34,14 @@ public class OdiseeJaxbHelper {
             // objects composed of classes from the package.
             odisee = (T) unmarshaller.unmarshal(new FileInputStream(file));
         } catch (JAXBException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         } catch (IOException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         }
         return odisee;
     }
 
-    public static <T> void marshal(Class<T> clazz, T objectToMarshal, Writer writer) throws XMLException {
+    public static <T> void marshal(Class<T> clazz, T objectToMarshal, Writer writer) throws XmlException {
         try {
             // create a JAXBContext capable of handling classes generated into package
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz.getPackage().getName());
@@ -51,13 +51,13 @@ public class OdiseeJaxbHelper {
             marshaller.marshal(objectToMarshal, writer);
             writer.flush();
         } catch (JAXBException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         } catch (IOException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         }
     }
 
-    public static <T> void marshal(Class<T> clazz, T objectToMarshal, OutputStream stream) throws XMLException {
+    public static <T> void marshal(Class<T> clazz, T objectToMarshal, OutputStream stream) throws XmlException {
         try {
             // create a JAXBContext capable of handling classes generated into package
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz.getPackage().getName());
@@ -66,11 +66,11 @@ public class OdiseeJaxbHelper {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(objectToMarshal, stream);
         } catch (JAXBException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         }
     }
 
-    public static <T> void marshal(Class<T> clazz, T objectToMarshal, File file) throws XMLException {
+    public static <T> void marshal(Class<T> clazz, T objectToMarshal, File file) throws XmlException {
         try {
             // create a JAXBContext capable of handling classes generated into package
             JAXBContext jaxbContext = JAXBContext.newInstance(clazz.getPackage().getName());
@@ -79,9 +79,9 @@ public class OdiseeJaxbHelper {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(objectToMarshal, new FileOutputStream(file));
         } catch (JAXBException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         } catch (FileNotFoundException e) {
-            throw new XMLException(e);
+            throw new XmlException(e);
         }
     }
 
