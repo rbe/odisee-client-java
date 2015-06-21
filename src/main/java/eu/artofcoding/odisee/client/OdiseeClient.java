@@ -16,16 +16,22 @@ import eu.artofcoding.beetlejuice.xml.JaxbHelper;
 import eu.artofcoding.beetlejuice.xml.XmlException;
 import eu.artofcoding.odisee.client.jaxb.*;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
+
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class OdiseeClient {
 
-    private final ObjectFactory factory = new ObjectFactory();
+    private final ObjectFactory factory;
 
     private String serviceURL;
 
@@ -38,6 +44,7 @@ public class OdiseeClient {
     private Request actualRequest;
 
     private OdiseeClient() {
+        factory = new ObjectFactory();
         odisee = factory.createOdisee();
     }
 
@@ -205,20 +212,51 @@ public class OdiseeClient {
         return createRequest(template, "pdf");
     }
 
-    public byte[] process() throws OdiseeClientException {
+    public byte[] process(boolean sendCompressed) throws OdiseeClientException {
         byte[] result;
         try {
             Writer odiseeXml = new StringWriter();
             JaxbHelper.marshal(Odisee.class, odisee, odiseeXml);
-            result = httpHelper.post(new URL(serviceURL), odiseeXml.toString());
-        } catch (XmlException e) {
-            throw new OdiseeClientException(e);
-        } catch (IOException e) {
+            if (sendCompressed) {
+                result = httpHelper.postCompressed(new URL(serviceURL), odiseeXml.toString());
+            } else {
+                result = httpHelper.post(new URL(serviceURL), odiseeXml.toString());
+            }
+        } catch (XmlException | IOException e) {
             throw new OdiseeClientException(e);
         }
         return result;
     }
 
     //</editor-fold>
+
+    public void saveCompressedRequestTo(Path path) throws OdiseeClientException {
+        try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream(path.toFile()))) {
+            String odiseeXmlString = getOdiseeXmlAsString();
+            gzipOutputStream.write(odiseeXmlString.getBytes());
+        } catch (XmlException | IOException e) {
+            throw new OdiseeClientException(e);
+        }
+    }
+
+    public void saveRequestTo(Path path) throws OdiseeClientException {
+        try {
+            String odiseeXmlString = getOdiseeXmlAsString();
+            Files.newOutputStream(path, CREATE).write(odiseeXmlString.getBytes());
+        } catch (XmlException | IOException e) {
+            throw new OdiseeClientException(e);
+        }
+    }
+
+    /**
+     * Return Odisee XML as string.
+     * @return String
+     * @throws XmlException
+     */
+    private String getOdiseeXmlAsString() throws XmlException {
+        Writer odiseeXml = new StringWriter();
+        JaxbHelper.marshal(Odisee.class, odisee, odiseeXml);
+        return odiseeXml.toString();
+    }
 
 }

@@ -16,10 +16,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
-import java.net.Authenticator;
-import java.net.HttpURLConnection;
-import java.net.PasswordAuthentication;
-import java.net.URL;
+import java.net.*;
+import java.util.zip.GZIPOutputStream;
 
 public class OdiseeHttpHelper {
 
@@ -29,43 +27,19 @@ public class OdiseeHttpHelper {
 
     private String password;
 
-    private static class UserPassAuthenticator extends Authenticator {
-
-        String user;
-        String pass;
-
-        public UserPassAuthenticator(String user, String pass) {
-            this.user = user;
-            this.pass = pass;
-        }
-
-        // This method is called when a password-protected URL is accessed
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(user, pass.toCharArray());
-        }
+    private OdiseeHttpHelper(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public static OdiseeHttpHelper create(String username, String password) {
         return new OdiseeHttpHelper(username, password);
     }
 
-    private OdiseeHttpHelper(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     public byte[] post(URL url, String body) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        // Authentication
-        Authenticator.setDefault(new UserPassAuthenticator(username, password));
-        // Request
-        connection.setRequestMethod("POST");
-        connection.setDoInput(true);
-        connection.setDoOutput(true);
-        connection.setUseCaches(false);
-        // Content
-        connection.setRequestProperty("Content-Type", "text/xml");
+        HttpURLConnection connection = getHttpURLConnection(url);
         connection.setRequestProperty("Content-Length", String.valueOf(body.length()));
+        connection.setRequestProperty("Content-Type", "text/xml");
         // Write request
         OutputStreamWriter streamWriter = new OutputStreamWriter(connection.getOutputStream());
         streamWriter.write(body);
@@ -81,6 +55,65 @@ public class OdiseeHttpHelper {
         streamWriter.close();
         connection.disconnect();
         return baos.toByteArray();
+    }
+
+    public byte[] postCompressed(URL url, String body) throws IOException {
+        HttpURLConnection connection = getHttpURLConnection(url);
+        connection.setRequestProperty("Content-Type", "application/x-gzip");
+        connection.setRequestProperty("Content-Encoding", "gzip");
+        // Write request
+        GZIPOutputStream gzipOutputStream = new GZIPOutputStream(connection.getOutputStream());
+        OutputStreamWriter streamWriter = new OutputStreamWriter(gzipOutputStream);
+        streamWriter.write(body);
+        streamWriter.flush();
+        // Read response
+        InputStream is = connection.getInputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buf = new byte[BUF_SIZE];
+        int len;
+        while ((len = is.read(buf)) != -1) {
+            baos.write(buf, 0, len);
+        }
+        streamWriter.close();
+        connection.disconnect();
+        return baos.toByteArray();
+    }
+
+    private HttpURLConnection getHttpURLConnection(URL url) throws IOException {
+        // First set the default cookie manager.
+        CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+        System.setProperty("http.maxRedirects", "3");
+        // URL connection
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        // Authentication
+        Authenticator.setDefault(new UserPassAuthenticator(username, password));
+        // Request
+        connection.setRequestMethod("POST");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+        connection.setUseCaches(false);
+        connection.setRequestProperty("User-Agent", "Odisee/Java Client");
+        //connection.setRequestProperty("Accept", "text/html, *; q=.2, */*; q=.2");
+        return connection;
+    }
+
+    private static class UserPassAuthenticator extends Authenticator {
+
+        String user;
+
+        String pass;
+
+        public UserPassAuthenticator(String user, String pass) {
+            this.user = user;
+            this.pass = pass;
+        }
+
+        /**
+         * This method is called when a password-protected URL is accessed.
+         */
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(user, pass.toCharArray());
+        }
     }
 
 }

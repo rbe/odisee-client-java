@@ -8,18 +8,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the eu.artofcoding.odisee.client.jaxb package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the eu.artofcoding.odisee.client.jaxb package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -28,14 +27,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: eu.artofcoding.odisee.client.jaxb
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Template }
-     * 
      */
     public Template createTemplate() {
         return new Template();
@@ -43,7 +40,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Autotext }
-     * 
      */
     public Autotext createAutotext() {
         return new Autotext();
@@ -51,7 +47,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Bookmark }
-     * 
      */
     public Bookmark createBookmark() {
         return new Bookmark();
@@ -59,7 +54,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Instructions }
-     * 
      */
     public Instructions createInstructions() {
         return new Instructions();
@@ -67,7 +61,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Macro }
-     * 
      */
     public Macro createMacro() {
         return new Macro();
@@ -75,7 +68,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Parameter }
-     * 
      */
     public Parameter createParameter() {
         return new Parameter();
@@ -83,7 +75,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Userfield }
-     * 
      */
     public Userfield createUserfield() {
         return new Userfield();
@@ -91,7 +82,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Table }
-     * 
      */
     public Table createTable() {
         return new Table();
@@ -99,7 +89,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Odisee }
-     * 
      */
     public Odisee createOdisee() {
         return new Odisee();
@@ -107,7 +96,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PostProcess }
-     * 
      */
     public PostProcess createPostProcess() {
         return new PostProcess();
@@ -115,7 +103,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Action }
-     * 
      */
     public Action createAction() {
         return new Action();
@@ -123,7 +110,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Input }
-     * 
      */
     public Input createInput() {
         return new Input();
@@ -131,7 +117,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Request }
-     * 
      */
     public Request createRequest() {
         return new Request();
@@ -139,7 +124,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Group }
-     * 
      */
     public Group createGroup() {
         return new Group();
@@ -147,7 +131,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Archive }
-     * 
      */
     public Archive createArchive() {
         return new Archive();
@@ -155,7 +138,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "http://xml.odisee.de/server/request", name = "result-placeholder")
     public JAXBElement<Object> createResultPlaceholder(Object value) {

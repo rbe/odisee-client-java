@@ -2,19 +2,14 @@
 package eu.artofcoding.odisee.client.jaxb;
 
 import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -28,13 +23,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "resultPlaceholder",
-    "input"
+        "resultPlaceholder",
+        "input"
 })
 @XmlRootElement(name = "action")
 @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
@@ -43,19 +36,19 @@ public class Action {
     @XmlElement(name = "result-placeholder")
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     protected Object resultPlaceholder;
+
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     protected Input input;
+
     @XmlAttribute(name = "type", required = true)
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     protected String type;
 
     /**
      * Gets the value of the resultPlaceholder property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     *         {@link Object }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public Object getResultPlaceholder() {
@@ -64,11 +57,9 @@ public class Action {
 
     /**
      * Sets the value of the resultPlaceholder property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public void setResultPlaceholder(Object value) {
@@ -77,11 +68,9 @@ public class Action {
 
     /**
      * Gets the value of the input property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Input }
-     *     
+     *
+     * @return possible object is
+     *         {@link Input }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public Input getInput() {
@@ -90,11 +79,9 @@ public class Action {
 
     /**
      * Sets the value of the input property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Input }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Input }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public void setInput(Input value) {
@@ -103,11 +90,9 @@ public class Action {
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     *         {@link String }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public String getType() {
@@ -116,11 +101,9 @@ public class Action {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public void setType(String value) {

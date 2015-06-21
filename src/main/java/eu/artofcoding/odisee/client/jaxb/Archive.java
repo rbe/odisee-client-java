@@ -2,18 +2,14 @@
 package eu.artofcoding.odisee.client.jaxb;
 
 import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -24,8 +20,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -36,13 +30,13 @@ public class Archive {
     @XmlAttribute(name = "database", required = true)
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     protected boolean database;
+
     @XmlAttribute(name = "files", required = true)
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     protected boolean files;
 
     /**
      * Gets the value of the database property.
-     * 
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public boolean isDatabase() {
@@ -51,7 +45,6 @@ public class Archive {
 
     /**
      * Sets the value of the database property.
-     * 
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public void setDatabase(boolean value) {
@@ -60,7 +53,6 @@ public class Archive {
 
     /**
      * Gets the value of the files property.
-     * 
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public boolean isFiles() {
@@ -69,7 +61,6 @@ public class Archive {
 
     /**
      * Sets the value of the files property.
-     * 
      */
     @Generated(value = "com.sun.tools.internal.xjc.Driver", date = "2013-01-10T06:15:21+01:00", comments = "JAXB RI v2.2.4-2")
     public void setFiles(boolean value) {
